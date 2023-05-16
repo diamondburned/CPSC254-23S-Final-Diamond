@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log In</title>
+
+<main>
+	<form method="post">
+		<h1>Log In</h1>
+
+		<label for="username">Username</label>
+		<input type="text" name="username" id="username" required>
+
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" required>
+
+		<input type="submit" value="Log in">
+	</form>
+</main>
+<footer>
+	<div id="ad">
+		<img src="https://media.istockphoto.com/id/525568423/photo/london-piccadilly-during-night.jpg?s=612x612&w=0&k=20&c=mBHnao0BnbANC1h2E-rOJ_tSviC7jTw9ir4tfp1V6uI=" />
+	</div>
+</footer>
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+
+form {
+	max-width: 300px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	padding: 0;
+	width: 100%;
+}
+
+#ad img {
+	max-height: 200px;
+	width: 100%;
+	object-fit: cover;
+}
+</style>

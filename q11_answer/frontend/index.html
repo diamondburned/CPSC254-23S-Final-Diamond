@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://unpkg.com/mvp.css@1.12/mvp.css"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log In</title>
+
+<main>
+	<hgroup>
+		<h1>Hello, <span id="username"></span></h1>
+		<h3>Balance: <span id="balance"></span></h3>
+	</hgroup>
+
+	<section>
+		<h3>User Activity</h3>
+		<ul id="activity">
+		</ul>
+	</section>
+
+	<section>
+		<h3>Withdraw</h3>
+		<form method="post" action="withdraw">
+			<label for="amount">Amount</label>
+			<input type="number" name="amount" id="amount" required>
+
+			<input type="submit" value="Withdraw">
+		</form>
+	</section>
+
+	<section>
+		<h3>Deposit</h3>
+		<form method="post" action="deposit">
+			<label for="amount">Amount</label>
+			<input type="number" name="amount" id="amount" required>
+
+			<input type="submit" value="Deposit">
+		</form>
+	</section>
+</main>
+
+<footer>
+	<div id="ad">
+		<img src="https://media.istockphoto.com/id/525568423/photo/london-piccadilly-during-night.jpg?s=612x612&w=0&k=20&c=mBHnao0BnbANC1h2E-rOJ_tSviC7jTw9ir4tfp1V6uI=" />
+	</div>
+</footer>
+
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+
+form {
+	max-width: 300px;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	padding: 0;
+	width: 100%;
+}
+
+#ad img {
+	max-height: 200px;
+	width: 100%;
+	object-fit: cover;
+}
+</style>
+
+<script type="module">
+const meResp = await fetch("/me")
+if (!meResp.ok) {
+	window.location = "/login"
+}
+
+const me = await meResp.json()
+document.getElementById("username").innerText = me.username
+document.getElementById("balance").innerText = `$${me.balance/100}`
+
+for (const activity of me.activity) {
+	const li = document.createElement("li")
+	li.innerText = `${activity.type} $${activity.amount/100}`
+	document.getElementById("activity").appendChild(li)
+}
+</script>
